@@ -15,6 +15,8 @@
 ## Project Structure Summary
 - `requirement.txt`: The plugins and dependency, they are needed to be installed within your virtual environment
   - `pip install -r requirement.txt`
-- `Testcases`: The main test cases folders 
-- `login_page`: The login pages
-- `contact_page`: The contact pages
+  
+- `Web`: Store all stuffs about Wechat work in Web 
+  - `Testcases`: The main test cases folders 
+  - `login_page`: The login pages
+  - `contact_page`: The contact pages
