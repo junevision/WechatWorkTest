@@ -7,7 +7,7 @@
 @desc: This cases are testing the register logic from different entrances
 """
 from time import sleep
-from login_page.main_page import MainPage
+from Web.login_page.main_page import MainPage
 
 
 class TestRegister:

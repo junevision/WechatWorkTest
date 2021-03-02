@@ -7,7 +7,7 @@
 @desc: This is the login page, including scan QR code and Company registration
 """
 from selenium.webdriver.common.by import By
-from login_page.register_page import RegisterPage
+from Web.login_page.register_page import RegisterPage
 
 
 class LoginPage:

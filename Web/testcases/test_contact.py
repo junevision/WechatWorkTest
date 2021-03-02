@@ -6,7 +6,7 @@
 @time: 2021/3/2 11:44
 @desc: This cases are to test the contact function
 """
-from contact_page.main_page import MainPage
+from Web.contact_page.main_page import MainPage
 
 
 class TestContact:

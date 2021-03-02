@@ -9,7 +9,7 @@ you always stay at homepage first before test
 """
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from contact_page.contact_page import ContactPage
+from Web.contact_page.contact_page import ContactPage
 
 
 class MainPage:

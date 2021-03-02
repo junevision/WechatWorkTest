@@ -20,12 +20,12 @@ class TestWeWork:
         chrome_arg.debugger_address = '127.0.0.1:9222'
         # self.driver = webdriver.Chrome(options=chrome_arg)
         self.driver = webdriver.Chrome()
-        self.driver.implicitly_wait(8)
+        self.driver.implicitly_wait(6)
 
     def teardown(self):
         self.driver.quit()
 
-    @pytest.mark.skip
+    # @pytest.mark.skip
     def test_register(self):
         """
         Sign in from homepage of WechatWork
@@ -36,7 +36,7 @@ class TestWeWork:
         self.driver.find_element(By.XPATH, "//*[@id='corp_name']").send_keys("test")  # company name
         sleep(2)
 
-    @pytest.mark.skip
+    # @pytest.mark.skip
     def test_login_with_debugger(self):
         """
         Reusing chrome browser by port

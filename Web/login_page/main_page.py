@@ -8,8 +8,8 @@
 """
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from login_page.login_page import LoginPage
-from login_page.register_page import RegisterPage
+from Web.login_page.login_page import LoginPage
+from Web.login_page.register_page import RegisterPage
 
 
 class MainPage:
