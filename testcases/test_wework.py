@@ -4,7 +4,7 @@
 @author: Mingjun Lei
 @file: test_wework.py
 @time: 2021/2/26 16:07
-@desc: 
+@desc: This py file is to test different login scenarios without PO
 """
 import json
 from time import sleep
