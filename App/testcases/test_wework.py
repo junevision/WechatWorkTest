@@ -19,8 +19,9 @@ class TestWeWork:
         caps["deviceName"] = "emulator-5554"
         caps["appPackage"] = "com.tencent.wework"
         caps["appActivity"] = ".launch.LaunchSplashActivity"
+        caps["automationName"] = "uiautomator2"  # activate toast verify
         caps["noReset"] = "true"
-        caps['settings[waitForIdleTimeout]'] = 1
+        caps['settings[waitForIdleTimeout]'] = 1  # set the wait time for dynamic page
         self.driver = webdriver.Remote("http://127.0.0.1:4723/wd/hub", caps)
         self.driver.implicitly_wait(5)
 
@@ -29,7 +30,7 @@ class TestWeWork:
 
     def test_punch(self):
         """
-        precondition: Signed in statement（ noReset=True）
+        precondition: Signed in statement(noReset=True)
         punch in and out testcases：
         1、打开【企业微信】应用
         2、进入【工作台】
@@ -53,9 +54,20 @@ class TestWeWork:
         assert "外出打卡成功" in self.driver.page_source
 
     def test_add_member(self):
-        """add member in enterprise"""
-        member_name = "test004"
-        mobile_number = "13800138003"
+        """
+        precondition: signed in statement(noReset=True)
+        add member in enterprise testcases:
+        1、打开【企业微信】应用
+        2、进入【通讯录】
+        3、点击【添加成员】
+        4、点击【手动输入添加】
+        5、输入【姓名手机号公司地址】
+        6、点击【保存】
+        7、验证【添加成功】
+        7、退出【企业微信】应用
+        """
+        member_name = "test005"
+        mobile_number = "13800138004"
         self.driver.find_element(MobileBy.XPATH, "//*[@text='通讯录']").click()
         self.driver.find_element(MobileBy.XPATH, "//*[@text='添加成员']").click()
         self.driver.find_element(MobileBy.XPATH, "//*[@text='手动输入添加']").click()
@@ -66,6 +78,8 @@ class TestWeWork:
         self.driver.find_element(MobileBy.XPATH, "//*[@text='确定']").click()
         self.driver.find_element(MobileBy.XPATH, "//*[@text='保存后自动发送邀请通知']").click()  # don't send invitation
         self.driver.find_element(MobileBy.XPATH, "//*[@text='保存']").click()
+        toast_element = self.driver.find_element(MobileBy.XPATH, "//*[@text='添加成功']")
+        assert "添加成功" == toast_element.text
         back_locator = (MobileBy.ID, "com.tencent.wework:id/gu_")
         WebDriverWait(self.driver, 10).until(ec.element_to_be_clickable(back_locator))
         self.driver.find_element(*back_locator).click()  # click back button
