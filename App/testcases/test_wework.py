@@ -29,8 +29,8 @@ class TestWeWork:
 
     def test_punch(self):
         """
-        前提条件: 已登录状态（ noReset=True）
-        打卡用例：
+        precondition: Signed in statement（ noReset=True）
+        punch in and out testcases：
         1、打开【企业微信】应用
         2、进入【工作台】
         3、点击【打卡】
@@ -38,7 +38,6 @@ class TestWeWork:
         5、点击【第N次打卡】
         6、验证【外出打卡成功】
         7、退出【企业微信】应用
-        :return:
         """
         self.driver.find_element(MobileBy.XPATH, "//android.view.ViewGroup//*[@text='工作台']").click()
         self.driver.find_element(MobileBy.ANDROID_UIAUTOMATOR,
@@ -54,7 +53,7 @@ class TestWeWork:
         assert "外出打卡成功" in self.driver.page_source
 
     def test_add_member(self):
-        """完成企业添加联系人"""
+        """add member in enterprise"""
         member_name = "test004"
         mobile_number = "13800138003"
         self.driver.find_element(MobileBy.XPATH, "//*[@text='通讯录']").click()
@@ -72,6 +71,5 @@ class TestWeWork:
         self.driver.find_element(*back_locator).click()  # click back button
         self.driver.find_element(MobileBy.XPATH, "//*[@text='添加成员']")
         assert member_name in self.driver.page_source
-
 
 
