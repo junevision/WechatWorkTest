@@ -105,4 +105,13 @@ class TestWeWork:
         self.driver.find_element(MobileBy.XPATH, "//*[@text='保存']").click()
         self.driver.find_element(MobileBy.XPATH, "//*[@text='添加成功']")   # assert toast
 
+    def test_delete_member(self):
+        self.driver.find_element(MobileBy.XPATH, "//*[@text='通讯录']").click()
+        self.driver.find_element(MobileBy.ID, "com.tencent.wework:id/igk").click()
+        self.driver.find_element(MobileBy.XPATH, "//*[@text='搜索']").send_keys("xxxx")
+        ele_list = self.driver.find_elements(MobileBy.XPATH, "//*[@text='xxxx']")  # find_elements return list
+        if len(ele_list) > 1:
+            ele_list[1].click()
+
+
 
