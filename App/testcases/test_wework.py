@@ -8,8 +8,7 @@
 """
 from appium import webdriver
 from appium.webdriver.common.mobileby import MobileBy
-from selenium.webdriver.support import expected_conditions as ec
-from selenium.webdriver.support.wait import WebDriverWait
+from selenium.common.exceptions import NoSuchElementException
 
 
 class TestWeWork:
@@ -21,7 +20,10 @@ class TestWeWork:
         caps["appActivity"] = ".launch.LaunchSplashActivity"
         caps["automationName"] = "uiautomator2"  # activate toast verify
         caps["noReset"] = "true"
-        caps['settings[waitForIdleTimeout]'] = 1  # set the wait time for dynamic page
+        caps["skipServerInstallation"] = "true"  # skip uiautomator2 server installation
+        caps["skipDeviceInitialization"] = "true"  # skip device initialization
+        # caps["dontStopAppOnReset"] = "true"  # don't stop app on reset, but here need to start from launch page
+        # caps['settings[waitForIdleTimeout]'] = 1  # set the wait time for dynamic page, this is for dynamic punch time
         self.driver = webdriver.Remote("http://127.0.0.1:4723/wd/hub", caps)
         self.driver.implicitly_wait(5)
 
@@ -45,13 +47,39 @@ class TestWeWork:
                                  'new UiScrollable(new UiSelector()'
                                  '.scrollable(true).instance(0))'
                                  '.scrollIntoView(new UiSelector()'
-                                 '.text("打卡").instance(0));').click()
+                                 '.text("打卡").instance(0));').click()  # android only, uiautomator2 scroll function
         self.driver.find_element(MobileBy.XPATH, "//*[@text='外出打卡']").click()
         self.driver.find_element(MobileBy.XPATH, '//*[contains(@text, "次外出")]').click()
-        print(self.driver.page_source)
+        print(self.driver.page_source)  # print the whole page source
         # activate implicitly wait via find element
         self.driver.find_element(MobileBy.XPATH, "//*[@text='外出打卡成功']")
         assert "外出打卡成功" in self.driver.page_source
+
+    def swipe_find(self, text, nums=3):
+        # default set to swipe triple times
+        for num in range(nums):
+            if num == nums - 1:
+                self.driver.implicitly_wait(5)  # set back to caps
+                raise NoSuchElementException(f"Have found {nums} times, but not found.")
+
+            self.driver.implicitly_wait(1)  # enhance performance
+            try:  # if element displays on current screen, then just return element directly
+                element = self.driver.find_element(MobileBy.XPATH, f"//*[@text='{text}']")
+                self.driver.implicitly_wait(5)  # set back to caps
+                return element
+            except:  # if current page is needed to swipe up for more details, then swipe until finding out element
+                print("not found")
+                size = self.driver.get_window_size()
+                width = size.get('width')
+                height = size.get("height")
+
+                start_x = width / 2
+                start_y = height * 0.8
+
+                end_x = start_x
+                end_y = height * 0.2
+
+                self.driver.swipe(start_x, start_y, end_x, end_y, 1000)
 
     def test_add_member(self):
         """
@@ -61,29 +89,20 @@ class TestWeWork:
         2、进入【通讯录】
         3、点击【添加成员】
         4、点击【手动输入添加】
-        5、输入【姓名手机号公司地址】
+        5、输入【姓名手机号】
         6、点击【保存】
         7、验证【添加成功】
         7、退出【企业微信】应用
         """
-        member_name = "test005"
-        mobile_number = "13800138004"
+        member_name = "test006"
+        mobile_number = "13800000001"
         self.driver.find_element(MobileBy.XPATH, "//*[@text='通讯录']").click()
-        self.driver.find_element(MobileBy.XPATH, "//*[@text='添加成员']").click()
+        self.swipe_find("添加成员").click()
         self.driver.find_element(MobileBy.XPATH, "//*[@text='手动输入添加']").click()
-        self.driver.find_element(MobileBy.XPATH, "//*[@text='必填']").send_keys(member_name)
-        self.driver.find_element(MobileBy.XPATH, "//*[@text='手机号']").send_keys(mobile_number)
-        self.driver.find_element(MobileBy.XPATH, "//*[@text='选填' and @class='android.widget.TextView']").click()
-        self.driver.find_element(MobileBy.XPATH, "//*[@text='请输入公司地址，例如“腾讯大厦”']").send_keys("腾讯大厦")
-        self.driver.find_element(MobileBy.XPATH, "//*[@text='确定']").click()
-        self.driver.find_element(MobileBy.XPATH, "//*[@text='保存后自动发送邀请通知']").click()  # don't send invitation
+        self.driver.find_element(MobileBy.XPATH,
+                                 "//*[contains(@text,'姓名')]/../android.widget.EditText").send_keys(member_name)
+        self.driver.find_element(MobileBy.XPATH, "//*[contains(@text,'手机')]/..//*[@text='必填']").send_keys(mobile_number)
         self.driver.find_element(MobileBy.XPATH, "//*[@text='保存']").click()
-        toast_element = self.driver.find_element(MobileBy.XPATH, "//*[@text='添加成功']")
-        assert "添加成功" == toast_element.text
-        back_locator = (MobileBy.ID, "com.tencent.wework:id/gu_")
-        WebDriverWait(self.driver, 10).until(ec.element_to_be_clickable(back_locator))
-        self.driver.find_element(*back_locator).click()  # click back button
-        self.driver.find_element(MobileBy.XPATH, "//*[@text='添加成员']")
-        assert member_name in self.driver.page_source
+        self.driver.find_element(MobileBy.XPATH, "//*[@text='添加成功']")   # assert toast
 
 
