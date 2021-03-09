@@ -21,8 +21,8 @@ class TestContact:
         self.app.stop()
 
     def test_add_contact(self):
-        member_name = "test009"
-        mobile_number = "13800000004"
+        member_name = "test010"
+        mobile_number = "13800000005"
         edit_page = self.main.goto_address_list().click_add_contact().add_contact_manual()
         edit_page.edit_contact(member_name, mobile_number)
         edit_page.verify_okay()

@@ -6,6 +6,8 @@
 @time: 2021/3/6 10:26
 @desc: This py file is to test the main function of wechat work APP
 """
+from time import sleep
+
 from appium import webdriver
 from appium.webdriver.common.mobileby import MobileBy
 from selenium.common.exceptions import NoSuchElementException
@@ -18,10 +20,12 @@ class TestWeWork:
         caps["deviceName"] = "emulator-5554"
         caps["appPackage"] = "com.tencent.wework"
         caps["appActivity"] = ".launch.LaunchSplashActivity"
-        caps["automationName"] = "uiautomator2"  # activate toast verify
+        # caps["automationName"] = "uiautomator2"  # activate toast verify
         caps["noReset"] = "true"
         caps["skipServerInstallation"] = "true"  # skip uiautomator2 server installation
         caps["skipDeviceInitialization"] = "true"  # skip device initialization
+        caps['unicodeKeyboard'] = 'true'
+        caps['resetKeyboard'] = 'true'
         # caps["dontStopAppOnReset"] = "true"  # don't stop app on reset, but here need to start from launch page
         # caps['settings[waitForIdleTimeout]'] = 1  # set the wait time for dynamic page, this is for dynamic punch time
         self.driver = webdriver.Remote("http://127.0.0.1:4723/wd/hub", caps)
@@ -92,7 +96,7 @@ class TestWeWork:
         5、输入【姓名手机号】
         6、点击【保存】
         7、验证【添加成功】
-        7、退出【企业微信】应用
+        8、退出【企业微信】应用
         """
         member_name = "test006"
         mobile_number = "13800000001"
@@ -103,15 +107,53 @@ class TestWeWork:
                                  "//*[contains(@text,'姓名')]/../android.widget.EditText").send_keys(member_name)
         self.driver.find_element(MobileBy.XPATH, "//*[contains(@text,'手机')]/..//*[@text='必填']").send_keys(mobile_number)
         self.driver.find_element(MobileBy.XPATH, "//*[@text='保存']").click()
-        self.driver.find_element(MobileBy.XPATH, "//*[@text='添加成功']")   # assert toast
+        self.driver.find_element(MobileBy.XPATH, "//*[@text='添加成功']")  # assert toast
 
     def test_delete_member(self):
+        """
+        precondition: signed in statement(noReset=True)
+        add member in enterprise testcases:
+        1、打开【企业微信】应用
+        2、进入【通讯录】
+        3、点击【查询】
+        4、输入【要删除的成员名字】
+        5、点击【搜索出来的结果】
+        6、点击右上角【更多按钮】
+        7、点击【编辑成员】
+        8、点击【删除成员】
+        9、点击【确定】
+        10、验证【无搜索结果】
+        11、退出【企业微信】应用
+        """
+        delete_member = "test007"
+        # go to contact page
         self.driver.find_element(MobileBy.XPATH, "//*[@text='通讯录']").click()
-        self.driver.find_element(MobileBy.ID, "com.tencent.wework:id/igk").click()
-        self.driver.find_element(MobileBy.XPATH, "//*[@text='搜索']").send_keys("xxxx")
-        ele_list = self.driver.find_elements(MobileBy.XPATH, "//*[@text='xxxx']")  # find_elements return list
+        # contact page
+        # click search button
+        eles = self.driver.find_elements(MobileBy.XPATH,
+                                         "//*[@text='我的客户']/../../..//*[@class='android.widget.TextView']")
+        eles[1].click()
+        # input delete member name on search text
+        self.driver.find_element(MobileBy.XPATH, "//*[@text='搜索']").send_keys(delete_member)
+        self.driver.implicitly_wait(10)
+        self.driver.keyevent(66)
+        self.driver.press_keycode(66)
+        # find_elements return list
+        ele_list = self.driver.find_elements(MobileBy.XPATH, f"//*[@text='{delete_member}']")
         if len(ele_list) > 1:
-            ele_list[1].click()
-
-
-
+            ele_list[1].click()  # click on the found delete member from list, and go to personal page
+        self.driver.implicitly_wait(5)
+        # personal page
+        # click on more button
+        elements = self.driver.find_elements(MobileBy.XPATH,
+                                             "//*[@text='个人信息']/../../../../..//*[@class='android.widget.TextView']")
+        elements[2].click()
+        # click on Edit Member button
+        self.driver.find_element(MobileBy.XPATH, "//*[@text='编辑成员']").click()
+        # go to Edit Member page
+        # click on delete member button
+        self.driver.find_element(MobileBy.XPATH, "//*[@text='删除成员']").click()
+        # click on confirm yes button
+        self.driver.find_element(MobileBy.XPATH, "//*[@text='确定']").click()
+        # assert no result
+        self.driver.find_element(MobileBy.XPATH, "//*[@text='无搜索结果']")
