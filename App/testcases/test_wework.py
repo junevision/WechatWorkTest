@@ -6,8 +6,6 @@
 @time: 2021/3/6 10:26
 @desc: This py file is to test the main function of wechat work APP
 """
-from time import sleep
-
 from appium import webdriver
 from appium.webdriver.common.mobileby import MobileBy
 from selenium.common.exceptions import NoSuchElementException
@@ -20,13 +18,13 @@ class TestWeWork:
         caps["deviceName"] = "emulator-5554"
         caps["appPackage"] = "com.tencent.wework"
         caps["appActivity"] = ".launch.LaunchSplashActivity"
-        # caps["automationName"] = "uiautomator2"  # activate toast verify
+        caps["automationName"] = "uiautomator2"  # activate toast verify
         caps["noReset"] = "true"
         caps["skipServerInstallation"] = "true"  # skip uiautomator2 server installation
         caps["skipDeviceInitialization"] = "true"  # skip device initialization
         caps['unicodeKeyboard'] = 'true'
         caps['resetKeyboard'] = 'true'
-        # caps["dontStopAppOnReset"] = "true"  # don't stop app on reset, but here need to start from launch page
+        caps["dontStopAppOnReset"] = "true"  # don't stop app on reset, but here need to start from launch page
         # caps['settings[waitForIdleTimeout]'] = 1  # set the wait time for dynamic page, this is for dynamic punch time
         self.driver = webdriver.Remote("http://127.0.0.1:4723/wd/hub", caps)
         self.driver.implicitly_wait(5)
@@ -125,25 +123,31 @@ class TestWeWork:
         10、验证【无搜索结果】
         11、退出【企业微信】应用
         """
-        delete_member = "test007"
-        # go to contact page
+        delete_member = "test006"
+        # go to address list page
         self.driver.find_element(MobileBy.XPATH, "//*[@text='通讯录']").click()
         # contact page
         # click search button
         eles = self.driver.find_elements(MobileBy.XPATH,
                                          "//*[@text='我的客户']/../../..//*[@class='android.widget.TextView']")
         eles[1].click()
+        # go to search contact page
         # input delete member name on search text
         self.driver.find_element(MobileBy.XPATH, "//*[@text='搜索']").send_keys(delete_member)
+        # set more implicitly wait for the element
         self.driver.implicitly_wait(10)
+        # simulate keyboard Enter
         self.driver.keyevent(66)
         self.driver.press_keycode(66)
         # find_elements return list
         ele_list = self.driver.find_elements(MobileBy.XPATH, f"//*[@text='{delete_member}']")
         if len(ele_list) > 1:
             ele_list[1].click()  # click on the found delete member from list, and go to personal page
+        else:
+            raise NoSuchElementException(f"cannot found {delete_member} on the search list")
+        # set back to default setting for implicitly wait
         self.driver.implicitly_wait(5)
-        # personal page
+        # personal info page
         # click on more button
         elements = self.driver.find_elements(MobileBy.XPATH,
                                              "//*[@text='个人信息']/../../../../..//*[@class='android.widget.TextView']")

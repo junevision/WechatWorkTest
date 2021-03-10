@@ -17,23 +17,29 @@ class BasePage:
 
     def __init__(self, driver: WebDriver=None):
         self.driver = driver
-        self.logger = self.get_logger("20210309", "../logs")
+        self.logger = self.get_logger("20210310", "../logs")
 
     def find(self, locator, value):
         self.logger.info("find")
-        self.driver.find_element(locator, value)
+        self.logger.info(f"{locator}, {value}")
+        element = self.driver.find_element(locator, value)
+        return element
 
     def finds(self, locator, value):
         self.logger.info("finds")
-        self.driver.find_elements(locator, value)
+        self.logger.info(f"{locator}, {value}")
+        elements = self.driver.find_elements(locator, value)
+        return elements
 
     def find_and_click(self, locator, value):
         self.logger.info("find and click")
-        self.driver.find_element(locator, value).click()
+        self.logger.info(f"{locator}, {value}")
+        self.find(locator, value).click()
 
     def find_and_send_keys(self, locator, value, input_keys):
         self.logger.info("find and send keys")
-        self.driver.find_element(locator, value).send_keys(input_keys)
+        self.logger.info(f"{locator}, {value}")
+        self.find(locator, value).send_keys(input_keys)
 
     def swipe_find(self, text, nums=3):
         # default set to swipe triple times
@@ -49,7 +55,7 @@ class BasePage:
                 self.driver.implicitly_wait(5)  # set back to caps
                 return element
             except:  # if current page is needed to swipe up for more details, then swipe until finding out element
-                self.logger.info("not found")
+                self.logger.info("not found target element when swiping")
                 size = self.driver.get_window_size()
                 width = size.get('width')
                 height = size.get("height")

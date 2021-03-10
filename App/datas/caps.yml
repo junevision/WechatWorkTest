@@ -6,6 +6,9 @@ desirecaps:
   noReset: "true"
   skipServerInstallation: "true"
   skipDeviceInitialization: "true"
+#  dontStopAppOnReset: "true"
+  unicodeKeyboard: "true"
+  resetKeyboard: "true"
 
 server:
   IP: 127.0.0.1
