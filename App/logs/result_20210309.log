@@ -1,0 +1,28 @@
+[INFO] - 2021-03-09 11:37:12,794 - find and click
+[INFO] - 2021-03-09 11:42:33,268 - find and click
+[INFO] - 2021-03-09 11:42:35,349 - set implicitly_wait: 1
+[INFO] - 2021-03-09 11:42:36,970 - not found
+[INFO] - 2021-03-09 11:42:38,730 - set implicitly_wait: 1
+[INFO] - 2021-03-09 11:42:38,967 - find and click
+[INFO] - 2021-03-09 11:42:41,784 - find and send keys
+[INFO] - 2021-03-09 11:42:43,908 - find and send keys
+[INFO] - 2021-03-09 11:42:45,043 - find and click
+[INFO] - 2021-03-09 11:42:45,620 - find
+[INFO] - 2021-03-09 11:46:45,317 - find and click
+[INFO] - 2021-03-09 11:46:47,738 - set implicitly_wait: 1
+[INFO] - 2021-03-09 11:46:48,796 - not found
+[INFO] - 2021-03-09 11:46:50,592 - set implicitly_wait: 1
+[INFO] - 2021-03-09 11:46:50,830 - find and click
+[INFO] - 2021-03-09 11:46:52,286 - find and send keys
+[INFO] - 2021-03-09 11:46:54,153 - find and send keys
+[INFO] - 2021-03-09 11:46:55,296 - find and click
+[INFO] - 2021-03-09 11:46:55,939 - find
+[INFO] - 2021-03-09 11:50:41,191 - find and click
+[INFO] - 2021-03-09 11:50:44,267 - set implicitly_wait: 1
+[INFO] - 2021-03-09 11:50:45,421 - not found
+[INFO] - 2021-03-09 11:50:47,163 - set implicitly_wait: 1
+[INFO] - 2021-03-09 11:50:47,339 - find and click
+[INFO] - 2021-03-09 11:50:48,989 - find and send keys
+[INFO] - 2021-03-09 11:50:50,846 - find and send keys
+[INFO] - 2021-03-09 11:50:51,900 - find and click
+[INFO] - 2021-03-09 11:50:52,516 - find

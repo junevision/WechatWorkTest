@@ -1,0 +1,73 @@
+[INFO] - 2021-03-10 14:03:21,538 - find and click
+[INFO] - 2021-03-10 14:03:21,914 - set implicitly_wait: 1
+[INFO] - 2021-03-10 14:03:22,818 - find and click
+[INFO] - 2021-03-10 14:03:24,374 - find and send keys
+[INFO] - 2021-03-10 14:03:26,264 - find and send keys
+[INFO] - 2021-03-10 14:03:27,388 - find and click
+[INFO] - 2021-03-10 14:03:28,016 - find
+[INFO] - 2021-03-10 14:03:28,017 - xpath, //*[@text='添加成功']
+[INFO] - 2021-03-10 14:06:01,149 - find and click
+[INFO] - 2021-03-10 14:06:01,150 - xpath, //*[@text='通讯录']
+[INFO] - 2021-03-10 14:06:02,123 - set implicitly_wait: 1
+[INFO] - 2021-03-10 14:06:03,025 - find and click
+[INFO] - 2021-03-10 14:06:03,026 - xpath, //*[@text='手动输入添加']
+[INFO] - 2021-03-10 14:06:04,516 - find and send keys
+[INFO] - 2021-03-10 14:06:04,517 - xpath, //*[contains(@text,'姓名')]/../*[@text='必填']
+[INFO] - 2021-03-10 14:06:06,287 - find and send keys
+[INFO] - 2021-03-10 14:06:06,288 - xpath, //*[contains(@text,'手机')]/..//*[@text='必填']
+[INFO] - 2021-03-10 14:06:07,412 - find and click
+[INFO] - 2021-03-10 14:06:07,412 - xpath, //*[@text='保存']
+[INFO] - 2021-03-10 14:06:07,993 - find
+[INFO] - 2021-03-10 14:06:07,993 - xpath, //*[@text='添加成功']
+[INFO] - 2021-03-10 14:39:23,820 - find and click
+[INFO] - 2021-03-10 14:39:23,822 - xpath, //*[@text='通讯录']
+[INFO] - 2021-03-10 14:39:24,081 - finds
+[INFO] - 2021-03-10 14:39:24,082 - xpath, //*[@text='我的客户']/../../..//*[@class='android.widget.TextView']
+[INFO] - 2021-03-10 14:41:37,110 - find and click
+[INFO] - 2021-03-10 14:41:37,111 - xpath, //*[@text='通讯录']
+[INFO] - 2021-03-10 14:41:37,481 - finds
+[INFO] - 2021-03-10 14:41:37,482 - xpath, //*[@text='我的客户']/../../..//*[@class='android.widget.TextView']
+[INFO] - 2021-03-10 14:50:14,686 - find and click
+[INFO] - 2021-03-10 14:50:14,688 - xpath, //*[@text='通讯录']
+[INFO] - 2021-03-10 14:50:19,310 - finds
+[INFO] - 2021-03-10 14:50:19,311 - xpath, //*[@text='我的客户']/../../..//*[@class='android.widget.TextView']
+[INFO] - 2021-03-10 15:00:59,055 - find and click
+[INFO] - 2021-03-10 15:00:59,056 - xpath, //*[@text='通讯录']
+[INFO] - 2021-03-10 15:00:59,056 - find
+[INFO] - 2021-03-10 15:00:59,056 - xpath, //*[@text='通讯录']
+[INFO] - 2021-03-10 15:01:02,108 - finds
+[INFO] - 2021-03-10 15:01:02,108 - xpath, //*[@text='我的客户']/../../..//*[@class='android.widget.TextView']
+[INFO] - 2021-03-10 15:01:03,102 - find and send keys
+[INFO] - 2021-03-10 15:01:03,102 - xpath, //*[@text='搜索']
+[INFO] - 2021-03-10 15:01:03,102 - find
+[INFO] - 2021-03-10 15:01:03,102 - xpath, //*[@text='搜索']
+[INFO] - 2021-03-10 15:01:05,364 - finds
+[INFO] - 2021-03-10 15:01:05,364 - xpath, //*[@text='test007']
+[INFO] - 2021-03-10 15:03:51,072 - find and click
+[INFO] - 2021-03-10 15:03:51,072 - xpath, //*[@text='通讯录']
+[INFO] - 2021-03-10 15:03:51,072 - find
+[INFO] - 2021-03-10 15:03:51,072 - xpath, //*[@text='通讯录']
+[INFO] - 2021-03-10 15:03:55,463 - finds
+[INFO] - 2021-03-10 15:03:55,463 - xpath, //*[@text='我的客户']/../../..//*[@class='android.widget.TextView']
+[INFO] - 2021-03-10 15:03:55,748 - find and send keys
+[INFO] - 2021-03-10 15:03:55,748 - xpath, //*[@text='搜索']
+[INFO] - 2021-03-10 15:03:55,748 - find
+[INFO] - 2021-03-10 15:03:55,748 - xpath, //*[@text='搜索']
+[INFO] - 2021-03-10 15:03:58,787 - finds
+[INFO] - 2021-03-10 15:03:58,788 - xpath, //*[@text='test007']
+[INFO] - 2021-03-10 15:03:59,599 - finds
+[INFO] - 2021-03-10 15:03:59,600 - xpath, //*[@text='个人信息']/../../../../..//*[@class='android.widget.TextView']
+[INFO] - 2021-03-10 15:04:01,176 - find and click
+[INFO] - 2021-03-10 15:04:01,177 - xpath, //*[@text='编辑成员']
+[INFO] - 2021-03-10 15:04:01,177 - find
+[INFO] - 2021-03-10 15:04:01,177 - xpath, //*[@text='编辑成员']
+[INFO] - 2021-03-10 15:04:02,445 - find and click
+[INFO] - 2021-03-10 15:04:02,445 - xpath, //*[@text='删除成员']
+[INFO] - 2021-03-10 15:04:02,445 - find
+[INFO] - 2021-03-10 15:04:02,445 - xpath, //*[@text='删除成员']
+[INFO] - 2021-03-10 15:04:04,429 - find and click
+[INFO] - 2021-03-10 15:04:04,430 - xpath, //*[@text='确定']
+[INFO] - 2021-03-10 15:04:04,430 - find
+[INFO] - 2021-03-10 15:04:04,430 - xpath, //*[@text='确定']
+[INFO] - 2021-03-10 15:04:05,533 - find
+[INFO] - 2021-03-10 15:04:05,534 - xpath, //*[@text='无搜索结果']
