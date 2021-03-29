@@ -2,15 +2,8 @@
 - WechatWork
 
 ## Purpose
-- Web/App Automation with Page Object Practice
+- Web/App/Api Automation with Page Object Practice
 - Test WechatWork's main function
-
-## Homework Resource
-- Web:
-  - https://ceshiren.com/t/topic/10279
-  - https://ceshiren.com/t/topic/10361
-- App:  
-  - https://ceshiren.com/t/topic/10490
 
 ## My Homework Address
 - https://github.com/junevision/WechatWorkTest
@@ -25,3 +18,5 @@
   - `contact_page`: The contact pages
   
 - `App`: Store all stuffs about Wechat work in App
+
+- `Api`: Store all stuffs about Wechat work in Api
