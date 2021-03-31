@@ -14,7 +14,11 @@ from Api.wework.base import Base
 class WeworkContact(Base):
 
     def get_info(self, user_id: str):
-        # get user information
+        """
+        get user information
+        :param user_id
+        :return:
+        """
         get_member_url = 'https://qyapi.weixin.qq.com/cgi-bin/user/get'
         params = {
             "userid": user_id
@@ -23,7 +27,13 @@ class WeworkContact(Base):
         return r.json()
 
     def create(self, user_id: str, name: str, mobile: str, department: list):
-        # mobile: 11
+        """
+        create member
+        :param name
+        :param mobile: 手机号 11位
+        :param department
+        :return:
+        """
         create_member_url = f'https://qyapi.weixin.qq.com/cgi-bin/user/create'
         data = {
             "userid": user_id,
@@ -35,6 +45,12 @@ class WeworkContact(Base):
         return r.json()
 
     def update(self, user_id: str, name: str):
+        """
+        update user information
+        :param user_id
+        :param name
+        :return:
+        """
         update_member_url = f'https://qyapi.weixin.qq.com/cgi-bin/user/update'
         data = {
             "userid": user_id,
@@ -44,6 +60,11 @@ class WeworkContact(Base):
         return r.json()
 
     def delete(self, user_id: str):
+        """
+        delete member
+        :param user_id
+        :return:
+        """
         delete_url = f'https://qyapi.weixin.qq.com/cgi-bin/user/delete'
         params = {
             "userid": user_id
